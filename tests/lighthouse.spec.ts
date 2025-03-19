@@ -10,7 +10,7 @@ urls.forEach((url) => {
     console.log(`Running Lighthouse for ${url}...`);
 
     // Run Lighthouse with the config file (assertions are handled by lhci)
-    execSync('npx lhci autorun --config=.lighthouserc.json', { stdio: 'inherit' });
+    execSync('npx lhci autorun --config=.lighthouserc.json --url=${url}', { stdio: 'inherit' });
 
     console.log(`${url} Lighthouse test completed!`);
   });
