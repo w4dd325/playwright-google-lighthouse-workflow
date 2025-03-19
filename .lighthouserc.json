@@ -1,11 +1,6 @@
 {
   "ci": {
     "collect": {
-      "url": [
-        "https://example.cypress.io/",
-        "https://example.cypress.io/commands/querying",
-        "https://example.cypress.io/utilities"
-      ],
       "numberOfRuns": 3
     },
     "assert": {

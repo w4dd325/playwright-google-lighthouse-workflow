@@ -1,17 +1,19 @@
 import { test } from '@playwright/test';
 import { execSync } from 'child_process';
 
-const fs = require('fs');
-const config = JSON.parse(fs.readFileSync('.lighthouserc.json', 'utf-8'));
-const urls = config.ci.collect.url; // Extract URLs from the config
+let url: string;
 
-urls.forEach((url) => {
-  test(`Lighthouse performance test for ${url}`, async () => {
-    console.log(`Running Lighthouse for ${url}...`);
+url = "https://example.cypress.io/";
+test(`Lighthouse performance test for ${url}`, async () => {
+  execSync(`npx lhci autorun --config=.lighthouserc.json --collect.url=${url}`, { stdio: 'inherit' });
+});
 
-    // Run Lighthouse with the config file (assertions are handled by lhci)
-    execSync('npx lhci autorun --config=.lighthouserc.json --url=${url}', { stdio: 'inherit' });
+url = "https://example.cypress.io/commands/querying";
+test(`Lighthouse performance test for ${url}`, async () => {
+  execSync(`npx lhci autorun --config=.lighthouserc.json --collect.url=${url}`, { stdio: 'inherit' });
+});
 
-    console.log(`${url} Lighthouse test completed!`);
-  });
+url = "https://example.cypress.io/utilities";
+test(`Lighthouse performance test for ${url}`, async () => {
+  execSync(`npx lhci autorun --config=.lighthouserc.json --collect.url=${url}`, { stdio: 'inherit' });
 });
